@@ -46,7 +46,7 @@ $(function() {
         })
     })
 
-    // // 监听登录表单的提交事件
+    // 监听登录表单的提交事件
     $('#form_login').submit(function(e) {
         // 阻止默认提交行为
         e.preventDefault();
