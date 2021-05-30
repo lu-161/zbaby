@@ -12,14 +12,12 @@ $(function() {
     })
 
     // 从layui中获取form对象
-    var form = layui.form;
-    var layer = layui.layer;
-    // 通过form。verify()函数自定义校验规则
+    var form = layui.form
+    var layer = layui.layer
+        // 通过form。verify()函数自定义校验规则
     form.verify({
         // 自定义了一个叫做 pwd 的校验规则
-        pwd: [
-            /^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'
-        ],
+        pwd: [/^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'],
         // 确认密码校验规则
         repwd: function(value) {
             // 通过形参拿到确认密码框的内容
@@ -37,18 +35,18 @@ $(function() {
         // 1. 阻止默认的提交行为
         e.preventDefault()
             // 2. 发起Ajax的POST请求
-        $.post('/api/reguser', { username: $('#form_reg [name=password]').val() }, function(res) {
+        $.post('/api/reguser', { username: $('#form_reg [name=username]').val(), password: $('#form_reg [name=password]').val() }, function(res) {
             if (res.status !== 0) {
                 return layer.msg(res.message)
             }
-            layer.msg('注册成功')
+            layer.msg('注册成功,请登录')
                 // 注册成功后跳转到登录页面
                 // 模拟人的点击行为
             $('#link_login').click()
         })
     })
 
-    // 监听登录表单的提交事件
+    // // 监听登录表单的提交事件
     $('#form_login').submit(function(e) {
         // 阻止默认提交行为
         e.preventDefault();
